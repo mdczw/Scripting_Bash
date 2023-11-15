@@ -10,6 +10,34 @@
 #Operation: <operation>
 #Numbers: <all space-separated numbers>
 
+operationCheck() {
+  if ! [[ "$operation" =~ ^[-+*%]$ ]]; then
+    echo "Please write the right operation ('-', '+', '*', '%') and/or use quotation marks"
+  fi
+}
+
+arethmeticСalculations() {
+  local temp=( "$@" )
+  local local_operation=${temp[0]}
+  local local_numbers=( ${temp[@]:1} )
+  if (( ${#local_numbers[@]} < 2 )); then
+    echo "Please write at least 2 numbers"
+    exit 1
+  else
+    result=${local_numbers[0]}
+    for (( i=1; i < ${#local_numbers[@]}; i++ )); do
+      result=$((result $local_operation local_numbers[i]))
+    done
+    echo "Result of the operation: $result"
+  fi  
+}
+
+debugFlag() {
+  echo "User: $USER"
+  echo "Script: $(basename "$0")"
+  echo "Operation: $operation"
+  echo "Numbers: ${numbers[*]}"
+}
 
 while [ $# -gt 0 ]; do
   case "$1" in
@@ -17,37 +45,21 @@ while [ $# -gt 0 ]; do
     -o)
       shift
       operation="$1"
-      if ! [[ "$operation" =~ ^[-+*%]$ ]]; then
-        echo "Please write the right operation ('-', '+', '*', '%') and/or use quotation marks"
-      fi
+      operationCheck 
       shift
       ;;
 
     -n)
       shift
-
       while [[ "$1" =~ [[:digit:]] ]]; do
         numbers+=("$1")
         shift
       done
-
-      if (( ${#numbers[@]} < 2 )); then
-        echo "Please write at least 2 numbers"
-       
-      else
-        result=${numbers[0]}
-        for (( i=1; i < ${#numbers[@]}; i++ )); do
-          result=$((result $operation numbers[i]))
-        done
-        echo "Result of the operation: $result"
-      fi
+      arethmeticСalculations "$operation" "${numbers[*]}"
       ;;
 
     -d)
-      echo "User: $USER"
-      echo "Script: $(basename "$0")"
-      echo "Operation: $operation"
-      echo "Numbers: ${numbers[*]}"
+      debugFlag
       shift
       ;;
     *)

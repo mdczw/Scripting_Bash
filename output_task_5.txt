@@ -1,0 +1,35 @@
+*** Replaced lowercase characters with uppercase and vise versa ***
+bASH IS A uNIX SHELL AND COMMAND LANGUAGE WRITTEN BY bRIAN fOX FOR THE gnu pROJECT AS A FREE SOFTWARE REPLACEMENT FOR THE bOURNE SHELL.
+fIRST RELEASED IN 1989, IT HAS BEEN USED AS THE DEFAULT LOGIN SHELL FOR MOST lINUX DISTRIBUTIONS.
+bASH WAS ONE OF THE FIRST PROGRAMS lINUS tORVALDS PORTED TO lINUX, ALONGSIDE gcc.
+a VERSION IS ALSO AVAILABLE FOR wINDOWS 10 AND wINDOWS 11 VIA THE wINDOWS sUBSYSTEM FOR lINUX.
+iT IS ALSO THE DEFAULT USER SHELL IN sOLARIS 11. bASH WAS ALSO THE DEFAULT SHELL IN VERSIONS OF aPPLE MACos FROM 10.3 (ORIGINALLY, THE DEFAULT SHELL WAS TCSH) TO 10.15 (MACos cATALINA), WHICH CHANGED THE DEFAULT SHELL TO ZSH, ALTHOUGH bASH REMAINS AVAILABLE AS AN ALTERNATIVE SHELL.
+
+*** Replaced <Unix> with <QQQ> ***
+Bash is a QQQ shell and command language written by Brian Fox for the GNU Project as a free software replacement for the Bourne shell.
+First released in 1989, it has been used as the default login shell for most Linux distributions.
+Bash was one of the first programs Linus Torvalds ported to Linux, alongside GCC.
+A version is also available for Windows 10 and Windows 11 via the Windows Subsystem for Linux.
+It is also the default user shell in Solaris 11. Bash was also the default shell in versions of Apple macOS from 10.3 (originally, the default shell was tcsh) to 10.15 (macOS Catalina), which changed the default shell to zsh, although Bash remains available as an alternative shell.
+
+*** Reversed text lines ***
+It is also the default user shell in Solaris 11. Bash was also the default shell in versions of Apple macOS from 10.3 (originally, the default shell was tcsh) to 10.15 (macOS Catalina), which changed the default shell to zsh, although Bash remains available as an alternative shell.
+A version is also available for Windows 10 and Windows 11 via the Windows Subsystem for Linux.
+Bash was one of the first programs Linus Torvalds ported to Linux, alongside GCC.
+First released in 1989, it has been used as the default login shell for most Linux distributions.
+Bash is a Unix shell and command language written by Brian Fox for the GNU Project as a free software replacement for the Bourne shell.
+
+*** Converted all the text to upper case ***
+BASH IS A UNIX SHELL AND COMMAND LANGUAGE WRITTEN BY BRIAN FOX FOR THE GNU PROJECT AS A FREE SOFTWARE REPLACEMENT FOR THE BOURNE SHELL.
+FIRST RELEASED IN 1989, IT HAS BEEN USED AS THE DEFAULT LOGIN SHELL FOR MOST LINUX DISTRIBUTIONS.
+BASH WAS ONE OF THE FIRST PROGRAMS LINUS TORVALDS PORTED TO LINUX, ALONGSIDE GCC.
+A VERSION IS ALSO AVAILABLE FOR WINDOWS 10 AND WINDOWS 11 VIA THE WINDOWS SUBSYSTEM FOR LINUX.
+IT IS ALSO THE DEFAULT USER SHELL IN SOLARIS 11. BASH WAS ALSO THE DEFAULT SHELL IN VERSIONS OF APPLE MACOS FROM 10.3 (ORIGINALLY, THE DEFAULT SHELL WAS TCSH) TO 10.15 (MACOS CATALINA), WHICH CHANGED THE DEFAULT SHELL TO ZSH, ALTHOUGH BASH REMAINS AVAILABLE AS AN ALTERNATIVE SHELL.
+
+*** Converted all the text to lower case  ***
+bash is a unix shell and command language written by brian fox for the gnu project as a free software replacement for the bourne shell.
+first released in 1989, it has been used as the default login shell for most linux distributions.
+bash was one of the first programs linus torvalds ported to linux, alongside gcc.
+a version is also available for windows 10 and windows 11 via the windows subsystem for linux.
+it is also the default user shell in solaris 11. bash was also the default shell in versions of apple macos from 10.3 (originally, the default shell was tcsh) to 10.15 (macos catalina), which changed the default shell to zsh, although bash remains available as an alternative shell.
+
