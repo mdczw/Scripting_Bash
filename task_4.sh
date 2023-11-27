@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #Caesar cipher script accepting three parameters <shift> <input file> <output file>
+#Usage example: ./task_4.sh [shift] [input_file] [output_file]
 
 
 parametersValueCheck() {

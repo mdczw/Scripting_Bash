@@ -7,6 +7,7 @@
 #If -l is passed, script converts all the text to lower case
 #If -u is passed, script converts all the text to upper case
 #Script should work with -i <input file> -o <output file> tags
+#Usage example: ./task_5.sh -vruls -i <input_file> -o <output_file
 
 inputFileCheck() {
   if [[ "$i" != "true" ]] || [[ ! -e $input_file ]]; then

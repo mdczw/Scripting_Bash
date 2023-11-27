@@ -9,6 +9,7 @@
 #Script: <script name>        
 #Operation: <operation>
 #Numbers: <all space-separated numbers>
+#Usage example: ./task_2.sh -o '*' -n 5 3 -d
 
 operationCheck() {
   if ! [[ "$operation" =~ ^[-+*%]$ ]]; then
