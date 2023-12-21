@@ -13,6 +13,7 @@ REGION="us-central1"
 ZONE="us-central1-a"
 DOCKERFILE_PATH="/Users/margaritadyczewska/Documents/DevOps_Course/spring-petclinic"
 DOCKER_IMAGE="$REGION-docker.pkg.dev/$PROJECT_ID/md-internship-sp-ar/cloud-spring-petclinic"
+ALLOWED_IP="89.64.40.117"
 
 
 createEnvironment() {
@@ -33,7 +34,8 @@ createEnvironment() {
 	gcloud compute --project="$PROJECT_ID" firewall-rules create md-internship-sp-firewall-rules \
 	    --network=md-internship-sp-vpc \
 	    --allow=tcp:80,tcp:22 \
-	    --target-tags=sp-app
+	    --target-tags=sp-app \
+		--source-ranges="$ALLOWED_IP"
 
 	#Reserve static IP address 
 	gcloud compute addresses create md-internship-sp-static-ip \
