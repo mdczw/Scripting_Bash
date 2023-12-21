@@ -4,8 +4,8 @@
 #Runs container on the VM.
 #
 #Usage: 
-#Run <source ./gcp.sh; start> to create resources and run container.
-#Run <source ./gcp.sh; remove> to remove all resources.
+#Run <source ./gcp_script.sh; start> to create resources and run container.
+#Run <source ./gcp_script.sh; remove> to remove all resources.
 
 
 PROJECT_ID="gd-gcp-internship-devops"
@@ -34,7 +34,7 @@ createEnvironment() {
 	gcloud compute --project="$PROJECT_ID" firewall-rules create md-internship-sp-firewall-rules \
 	    --network=md-internship-sp-vpc \
 	    --allow=tcp:80,tcp:22 \
-	    --target-tags=sp-app \
+	    --target-tags=sp \
 		--source-ranges="$ALLOWED_IP"
 
 	#Reserve static IP address 
@@ -73,7 +73,7 @@ runContainer() {
 	    --zone="$ZONE" \
 	    --machine-type=e2-small \
 	    --subnet=md-internship-sp-subnet \
-	    --tags=sp-app \
+	    --tags=sp \
 	    --image=projects/cos-cloud/global/images/cos-101-17162-336-28 \
 	    --address="$STATIC_IP_SP" \
 	    --container-image="$DOCKER_IMAGE":latest \
