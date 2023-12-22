@@ -4,13 +4,13 @@
 #Runs container on the VM.
 #
 #Usage:
-#Run <./gcp_create.sh [OPTIONS...]> to create resources and run container.
+#Run <./gcp_create.sh [OPTIONS]> to create resources and run container.
 #Example: ./gcp_create.sh -d <Dockerfile> -I <Allowed_IPs>
 
 PROJECT_ID="gd-gcp-internship-devops"
 REGION="us-central1"
 ZONE="${REGION}-a"
-BASE_RESOURS_NAME="md-internship-sp-"
+BASE_RESOURS_NAME="md-internship-sp"
 
 SUBNET_RANGE="10.0.2.0/24"
 
@@ -20,34 +20,34 @@ ALLOWED_PORTS="tcp:80,tcp:22"
 #DOCKERFILE_PATH_LOCAL="/Users/margaritadyczewska/Documents/DevOps_Course/spring-petclinic"
 DOCKERFILE_PATH=""
 CONTAINER_NAME="cloud-spring-petclinic"
-DOCKER_IMAGE="$REGION-docker.pkg.dev/$PROJECT_ID/${BASE_RESOURS_NAME}ar/${CONTAINER_NAME}"
+DOCKER_IMAGE="$REGION-docker.pkg.dev/$PROJECT_ID/${BASE_RESOURS_NAME}-ar/${CONTAINER_NAME}"
 
 createEnvironment() {
 
-	gcloud compute networks create "$BASE_RESOURS_NAME"vpc \
+	gcloud compute networks create "$BASE_RESOURS_NAME"-vpc \
 		--project="$PROJECT_ID" \
 		--subnet-mode=custom
 
-	gcloud compute networks subnets create "$BASE_RESOURS_NAME"subnet \
+	gcloud compute networks subnets create "$BASE_RESOURS_NAME"-subnet \
 		--project="$PROJECT_ID" \
 		--range="$SUBNET_RANGE" \
-		--network="$BASE_RESOURS_NAME"vpc \
+		--network="$BASE_RESOURS_NAME"-vpc \
 		--region="$REGION"
 
-	gcloud compute --project="$PROJECT_ID" firewall-rules create "$BASE_RESOURS_NAME"firewall-rules \
-		--network="$BASE_RESOURS_NAME"vpc \
+	gcloud compute --project="$PROJECT_ID" firewall-rules create "$BASE_RESOURS_NAME"-firewall-rules \
+		--network="$BASE_RESOURS_NAME"-vpc \
 		--allow="$ALLOWED_PORTS" \
 		--target-tags=sp \
 		--source-ranges="$ALLOWED_IP"
 
-	gcloud compute addresses create "$BASE_RESOURS_NAME"static-ip \
+	gcloud compute addresses create "$BASE_RESOURS_NAME"-static-ip \
 		--project="$PROJECT_ID" \
 		--region="$REGION"
 }
 
 pushImage() {
 
-	gcloud artifacts repositories create "$BASE_RESOURS_NAME"ar \
+	gcloud artifacts repositories create "$BASE_RESOURS_NAME"-ar \
 		--repository-format=docker \
 		--location="$REGION"
 
@@ -62,16 +62,16 @@ pushImage() {
 
 runContainer() {
 
-	STATIC_IP_SP=$(gcloud compute addresses describe "$BASE_RESOURS_NAME"static-ip \
+	STATIC_IP_SP=$(gcloud compute addresses describe "$BASE_RESOURS_NAME"-static-ip \
 		--project="$PROJECT_ID" \
 		--region="$REGION" \
 		--format='value(address)')
 
-	gcloud compute instances create-with-container "$BASE_RESOURS_NAME"vm \
+	gcloud compute instances create-with-container "$BASE_RESOURS_NAME"-vm \
 		--project="$PROJECT_ID" \
 		--zone="$ZONE" \
 		--machine-type=e2-small \
-		--subnet="$BASE_RESOURS_NAME"subnet \
+		--subnet="$BASE_RESOURS_NAME"-subnet \
 		--tags=sp \
 		--image=projects/cos-cloud/global/images/cos-101-17162-336-28 \
 		--address="$STATIC_IP_SP" \
@@ -83,7 +83,7 @@ main() {
 
 	if [[ -z $DOCKERFILE_PATH ]]; then
 		echo ""
-		echo "Specify path to Docker file"
+		echo "Specify path to the Dockerfile"
 		echo ""
 		echo "Usage example:"
 		echo "$0 -d <Dockerfile> -I <Allowed_IPs>"
@@ -115,7 +115,7 @@ while getopts "r:b:s:I:P:d:c:h" flag; do
 	d)
 		DOCKERFILE_PATH=$OPTARG
 		if [[ ! -e $DOCKERFILE_PATH ]]; then
-			echo "Specify path to Docker file"
+			echo "Invalid path to the Dockerfile"
 			exit 1
 		fi
 		;;
@@ -125,7 +125,7 @@ while getopts "r:b:s:I:P:d:c:h" flag; do
 	h)
 		echo ""
 		echo "[-r] to set up REGION (default us-central1)"
-		echo "[-b] to set up BASE_RESOURS_NAME (default md-internship-sp-)"
+		echo "[-b] to set up BASE_RESOURS_NAME (default md-internship-sp)"
 		echo "[-s] to set up SUBNET_RANGE (default 10.0.2.0/24)"
 		echo "[-I] to set up ALLOWED_IP (default 0.0.0.0/0)"
 		echo "[-P] to set up ALLOWED_PORTS (default tcp:80,tcp:22)"
