@@ -114,7 +114,7 @@ while getopts "r:b:s:I:P:d:c:h" flag; do
     P)
       ALLOWED_PORTS=$OPTARG
       ;;
-	d)
+    d)
       DOCKERFILE_PATH=$OPTARG
 	  if [[ ! -e $DOCKERFILE_PATH ]]; then
 	  	echo "Specify path to Docker file"
