@@ -81,7 +81,7 @@ runContainer() {
 
 main() {
 
-	if [[ $DOCKERFILE_PATH=="" ]]; then
+	if [[ -z $DOCKERFILE_PATH ]]; then
 		echo ""
 		echo "Specify path to Docker file"
 		echo ""
@@ -91,8 +91,8 @@ main() {
 		exit 1
 	fi
 	createEnvironment
-	pushImage
-	runContainer
+	#pushImage
+	#runContainer
 }
 
 while getopts "r:b:s:I:P:d:c:h" flag; do
