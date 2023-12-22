@@ -17,7 +17,7 @@ SUBNET_RANGE="10.0.2.0/24"
 ALLOWED_IP="0.0.0.0/0"
 ALLOWED_PORTS="tcp:80,tcp:22"
 
-DOCKERFILE_PATH_DEF="/Users/margaritadyczewska/Documents/DevOps_Course/spring-petclinic"
+#DOCKERFILE_PATH_LOCAL="/Users/margaritadyczewska/Documents/DevOps_Course/spring-petclinic"
 DOCKERFILE_PATH=""
 CONTAINER_NAME="cloud-spring-petclinic"
 DOCKER_IMAGE="$REGION-docker.pkg.dev/$PROJECT_ID/${BASE_RESOURS_NAME}ar/${CONTAINER_NAME}"
@@ -91,8 +91,8 @@ main() {
 		exit 1
 	fi
 	createEnvironment
-	#pushImage
-	#runContainer
+	pushImage
+	runContainer
 }
 
 while getopts "r:b:s:I:P:d:c:h" flag; do
